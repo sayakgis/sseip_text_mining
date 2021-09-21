@@ -47,6 +47,22 @@ nb_path: "01_data_prepocess.ipynb"
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Project-Name:-Understanding-qualitative-data-of-&quot;Lesson-Feedback&quot;-of-SSEIP">Project Name: Understanding qualitative data of "Lesson Feedback" of SSEIP<a class="anchor-link" href="#Project-Name:-Understanding-qualitative-data-of-&quot;Lesson-Feedback&quot;-of-SSEIP"> </a></h2><h3 id="Document-Name:-01_data_preprocess">Document Name: 01_data_preprocess<a class="anchor-link" href="#Document-Name:-01_data_preprocess"> </a></h3><h3 id="Objective:">Objective:<a class="anchor-link" href="#Objective:"> </a></h3><p>The objective of this notebook is to preprocess data to an usable format for Text Mining/NLP/Exploration. In series of steps we would try to do the following steps:</p>
+<ul>
+<li>Subset usefull columns of lesson feedback xlsx file</li>
+<li>Combine columns of "Wish", "Star", "Feedback"</li>
+<li>Clean the text: remove punctuations, stopwords, special characters</li>
+<li>Perform Tokenisation</li>
+<li>Perform Lemmetisation</li>
+<li>Tag Part of Speech</li>
+<li>Save the table for further analysis</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Import-libraries-and-load-data">Import libraries and load data<a class="anchor-link" href="#Import-libraries-and-load-data"> </a></h3>
 </div>
 </div>
@@ -54,6 +70,20 @@ nb_path: "01_data_prepocess.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">path</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;C:\Users\cha95906\OneDrive - Mott MacDonald\SSO Lesson observations&#39;</span>
+<span class="n">fn</span> <span class="o">=</span> <span class="s1">&#39;lehwilan-SSO_Classroom_Observation_all_data_original_clean.xlsx&#39;</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="n">fn</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -408,6 +438,16 @@ nb_path: "01_data_prepocess.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
     {% endraw %}
@@ -415,6 +455,16 @@ nb_path: "01_data_prepocess.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#print(df.columns)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
     {% endraw %}
@@ -431,6 +481,20 @@ nb_path: "01_data_prepocess.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_sub</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;date_start&#39;</span><span class="p">,</span><span class="s1">&#39;location.district_label&#39;</span><span class="p">,</span><span class="s1">&#39;location.school_label&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;cd_teacher_name&#39;</span><span class="p">,</span><span class="s1">&#39;cd_class&#39;</span><span class="p">,</span><span class="s1">&#39;cd_subject&#39;</span><span class="p">,</span><span class="s1">&#39;cd_girlspresent&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;cd_boyspresent&#39;</span><span class="p">,</span><span class="s1">&#39;location.school_school_level&#39;</span><span class="p">,</span><span class="s1">&#39;co_star1&#39;</span><span class="p">,</span>
+             <span class="s1">&#39;co_star1_example&#39;</span><span class="p">,</span><span class="s1">&#39;co_star2&#39;</span><span class="p">,</span><span class="s1">&#39;co_star2_example&#39;</span><span class="p">,</span><span class="s1">&#39;co_wish&#39;</span><span class="p">,</span> 
+             <span class="s1">&#39;co_wish_actions&#39;</span><span class="p">,</span><span class="s1">&#39;feedback_notes&#39;</span><span class="p">,</span><span class="s1">&#39;co_lpm_follow&#39;</span><span class="p">,</span><span class="s1">&#39;Pedagogy composite score (max of 24)&#39;</span><span class="p">]]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
     {% endraw %}
@@ -438,6 +502,16 @@ nb_path: "01_data_prepocess.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_sub</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -570,6 +644,26 @@ nb_path: "01_data_prepocess.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">co_star1</span> <span class="o">+</span> <span class="s2">&quot;. &quot;</span> <span class="o">+</span><span class="n">x</span><span class="o">.</span><span class="n">co_star1_example</span> <span class="o">+</span> <span class="s2">&quot;. &quot;</span> <span class="o">+</span> <span class="n">x</span><span class="o">.</span><span class="n">co_star2</span> <span class="o">+</span> <span class="s2">&quot;. &quot;</span><span class="o">+</span><span class="n">x</span><span class="o">.</span><span class="n">co_star2_example</span><span class="o">+</span><span class="s1">&#39;.&#39;</span>
+
+<span class="n">df_sub</span><span class="p">[</span><span class="s1">&#39;co_star&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_sub</span><span class="p">[[</span><span class="s1">&#39;co_star1&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;co_star1_example&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;co_star2&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;co_star2_example&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="n">func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">co_wish</span> <span class="o">+</span> <span class="s2">&quot;. &quot;</span> <span class="o">+</span><span class="n">x</span><span class="o">.</span><span class="n">co_wish_actions</span><span class="o">+</span><span class="s1">&#39;.&#39;</span>
+
+<span class="n">df_sub</span><span class="p">[</span><span class="s1">&#39;co_wish&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_sub</span><span class="p">[[</span><span class="s1">&#39;co_wish&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;co_wish_actions&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
     {% endraw %}
@@ -577,6 +671,16 @@ nb_path: "01_data_prepocess.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_sub</span> <span class="p">[[</span><span class="s1">&#39;co_star&#39;</span><span class="p">,</span><span class="s1">&#39;co_wish&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -655,6 +759,25 @@ nb_path: "01_data_prepocess.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">rep</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s1">&#39;\s+&#39;</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">fn_remove_punc</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;..&#39;</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="c1"># fn_rep = lambda x: rep(x)</span>
+<span class="c1"># .replace(&#39;,&#39;,&#39;.&#39;).replace(&#39;;&#39;,&#39;.&#39;).replace(&#39; he &#39;,&#39;teacher &#39;).replace(&#39; she &#39;,&#39;teacher &#39;)</span>
+
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;co_star&#39;</span><span class="p">,</span><span class="s1">&#39;co_wish&#39;</span><span class="p">,</span><span class="s1">&#39;feedback_notes&#39;</span><span class="p">]:</span>
+    <span class="n">df_sub</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_sub</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">fn_remove_punc</span><span class="p">)</span>
+    <span class="n">df_sub</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_sub</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">rep</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
     {% endraw %}
@@ -662,6 +785,16 @@ nb_path: "01_data_prepocess.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
     {% endraw %}
@@ -669,6 +802,17 @@ nb_path: "01_data_prepocess.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">df_sub</span><span class="p">[</span><span class="s1">&#39;co_wish&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> Sentence: </span><span class="si">{}</span><span class="s1">, </span><span class="se">\n</span><span class="s1"> Wish: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
     {% endraw %}
@@ -676,6 +820,18 @@ nb_path: "01_data_prepocess.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">df_sub</span><span class="p">[</span><span class="s1">&#39;co_star&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> Sentence: </span><span class="si">{}</span><span class="s1">, </span><span class="se">\n</span><span class="s1"> Star: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">))</span>
+<span class="c1"># i for i in df_sub[&#39;co_star&#39;][:10])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
     {% endraw %}
@@ -683,6 +839,18 @@ nb_path: "01_data_prepocess.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">df_sub</span><span class="p">[</span><span class="s1">&#39;feedback_notes&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> Sentence: </span><span class="si">{}</span><span class="s1">, </span><span class="se">\n</span><span class="s1"> Feedback: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">))</span>
+<span class="c1"># i for i in df_sub[&#39;co_star&#39;][:10])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
     {% endraw %}
@@ -690,6 +858,41 @@ nb_path: "01_data_prepocess.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">translator</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">maketrans</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">string</span><span class="o">.</span><span class="n">punctuation</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">clean_punc</span><span class="p">(</span><span class="n">string</span><span class="p">,</span><span class="n">translator</span><span class="p">):</span>
+    <span class="n">string</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">translator</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">string</span>
+
+<span class="c1">## remove stopwords</span>
+<span class="n">nlp</span> <span class="o">=</span> <span class="n">spacy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;en_core_web_sm&quot;</span><span class="p">)</span>
+<span class="c1"># nlp.Defaults.stop_words.add(&quot;teacher&quot;,&quot;student&quot;])</span>
+<span class="c1"># nlp.Defaults.stop_words |= {&quot;teacher&quot;,&quot;student&quot;,&quot;students&quot;,&quot;lesson&quot;,&quot;class&quot;,&quot;pupil&quot;,&quot;pupils&quot;}</span>
+
+<span class="k">def</span> <span class="nf">remove_stopword</span><span class="p">(</span><span class="n">string</span><span class="p">,</span><span class="n">nlp</span><span class="p">):</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+    
+    <span class="n">token_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">:</span>
+        <span class="n">token_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">token</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+    
+    <span class="n">filtered_sentence</span> <span class="o">=</span><span class="p">[]</span> 
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">token_list</span><span class="p">:</span>
+        <span class="n">lexeme</span> <span class="o">=</span> <span class="n">nlp</span><span class="o">.</span><span class="n">vocab</span><span class="p">[</span><span class="n">word</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">lexeme</span><span class="o">.</span><span class="n">is_stop</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="n">filtered_sentence</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> 
+    
+    <span class="k">return</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">filtered_sentence</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
     {% endraw %}
@@ -697,6 +900,19 @@ nb_path: "01_data_prepocess.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;co_star&#39;</span><span class="p">,</span><span class="s1">&#39;co_wish&#39;</span><span class="p">,</span><span class="s1">&#39;feedback_notes&#39;</span><span class="p">]:</span>
+    <span class="n">tqdm</span><span class="o">.</span><span class="n">pandas</span><span class="p">()</span>
+    <span class="n">df_sub</span><span class="p">[</span><span class="n">col</span><span class="o">+</span><span class="s1">&#39;_clean&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_sub</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">progress_apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> 
+                                                        <span class="n">remove_stopword</span><span class="p">(</span><span class="n">clean_punc</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">translator</span><span class="p">),</span><span class="n">nlp</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
     {% endraw %}
@@ -704,6 +920,16 @@ nb_path: "01_data_prepocess.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_sub</span> <span class="p">[[</span><span class="s1">&#39;co_star&#39;</span><span class="p">,</span><span class="s1">&#39;co_star_clean&#39;</span><span class="p">,</span><span class="s2">&quot;co_wish&quot;</span><span class="p">,</span><span class="s1">&#39;co_wish_clean&#39;</span><span class="p">,</span><span class="s1">&#39;feedback_notes&#39;</span><span class="p">,</span><span class="s1">&#39;feedback_notes_clean&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -788,6 +1014,25 @@ nb_path: "01_data_prepocess.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">cal_lemma</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">lemma_</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">]</span>
+    <span class="k">return</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">cal_lemma</span><span class="p">(</span><span class="n">df_sub</span><span class="o">.</span><span class="n">co_star_clean</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;co_star&#39;</span><span class="p">,</span><span class="s1">&#39;co_wish&#39;</span><span class="p">,</span><span class="s1">&#39;feedback_notes&#39;</span><span class="p">]:</span>
+    <span class="n">col1</span> <span class="o">=</span> <span class="n">col</span><span class="o">+</span><span class="s1">&#39;_clean&#39;</span>
+    <span class="n">df_sub</span><span class="p">[</span><span class="n">col1</span><span class="o">+</span><span class="s1">&#39;_lemma&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_sub</span><span class="p">[</span><span class="n">col1</span><span class="p">]</span><span class="o">.</span><span class="n">progress_apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">cal_lemma</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
     {% endraw %}
@@ -795,6 +1040,16 @@ nb_path: "01_data_prepocess.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_sub</span> <span class="p">[[</span><span class="s1">&#39;co_star&#39;</span><span class="p">,</span><span class="s1">&#39;co_star_clean_lemma&#39;</span><span class="p">,</span><span class="s2">&quot;co_wish&quot;</span><span class="p">,</span><span class="s1">&#39;co_wish_clean_lemma&#39;</span><span class="p">,</span><span class="s1">&#39;feedback_notes&#39;</span><span class="p">,</span><span class="s1">&#39;feedback_notes_clean_lemma&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -879,6 +1134,37 @@ nb_path: "01_data_prepocess.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">set_key</span><span class="p">(</span><span class="n">dictionary</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="c1">#     if value not in dictionary[key]:</span>
+    <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">dictionary</span><span class="p">:</span>
+        <span class="n">dictionary</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">dictionary</span><span class="p">[</span><span class="n">key</span><span class="p">])</span> <span class="o">==</span> <span class="nb">list</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">dictionary</span><span class="p">[</span><span class="n">key</span><span class="p">]:</span>
+            <span class="n">dictionary</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">dictionary</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">dictionary</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">value</span><span class="p">]</span>
+        
+<span class="k">def</span> <span class="nf">cal_lemma_pos</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">s</span><span class="o">=</span><span class="p">{}</span>
+<span class="c1">#     doc = &#39; &#39;.join(i for i in x)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">doc</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">y</span><span class="o">=</span><span class="p">[(</span><span class="n">x</span><span class="o">.</span><span class="n">pos_</span><span class="p">,</span><span class="n">x</span><span class="o">.</span><span class="n">lemma_</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="n">y</span><span class="p">:</span>
+            <span class="n">set_key</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">pass</span>
+    <span class="k">return</span> <span class="n">s</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
     {% endraw %}
@@ -886,6 +1172,20 @@ nb_path: "01_data_prepocess.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tqdm</span><span class="o">.</span><span class="n">pandas</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;co_star&#39;</span><span class="p">,</span><span class="s1">&#39;co_wish&#39;</span><span class="p">,</span><span class="s1">&#39;feedback_notes&#39;</span><span class="p">]:</span>
+<span class="c1">#     col1 = col+&#39;_clean&#39;</span>
+    <span class="n">df_sub</span><span class="p">[</span><span class="n">col</span><span class="o">+</span><span class="s1">&#39;_pos_lemma&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_sub</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">progress_apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">cal_lemma_pos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">df_sub</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="s1">&#39;cleaned5.csv&#39;</span><span class="p">))</span>    
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
     {% endraw %}
@@ -893,6 +1193,16 @@ nb_path: "01_data_prepocess.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_sub</span><span class="p">[[</span><span class="s1">&#39;co_star_pos_lemma&#39;</span><span class="p">,</span><span class="s1">&#39;co_wish_pos_lemma&#39;</span><span class="p">,</span><span class="s1">&#39;feedback_notes_pos_lemma&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 <div class="output_wrapper">
 <div class="output">
@@ -965,6 +1275,16 @@ nb_path: "01_data_prepocess.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
     {% endraw %}
@@ -972,6 +1292,16 @@ nb_path: "01_data_prepocess.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
     {% endraw %}
@@ -979,6 +1309,16 @@ nb_path: "01_data_prepocess.ipynb"
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
 
 </div>
     {% endraw %}
