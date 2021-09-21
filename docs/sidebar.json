@@ -1,6 +1,7 @@
 {
   "sseip_text_mining": {
     "Overview": "/",
-    "module name here": "core.html"
+    "module name here": "core.html",
+    "Title": "analysis_star.html"
   }
 }
