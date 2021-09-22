@@ -10,8 +10,11 @@ entries:
       title: Overview
       url: /
     - output: web,pdf
-      title: module name here
+      title: Text Mining
       url: core.html
+    - output: web,pdf
+      title: Data_preprocess
+      url: data_prepocess.html
     - output: web,pdf
       title: Title
       url: analysis_star.html

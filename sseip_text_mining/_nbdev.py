@@ -2,7 +2,14 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"say_hello": "00_core.ipynb"}
+index = {"say_hello": "00_core.ipynb",
+         "nlp_en": "01_data_prepocess.ipynb",
+         "clean_punc": "01_data_prepocess.ipynb",
+         "remove_stopword": "01_data_prepocess.ipynb",
+         "nlp": "01_data_prepocess.ipynb",
+         "cal_lemma": "01_data_prepocess.ipynb",
+         "set_key": "01_data_prepocess.ipynb",
+         "cal_lemma_pos": "01_data_prepocess.ipynb"}
 
 modules = ["core.py"]
 
