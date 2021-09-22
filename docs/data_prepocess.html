@@ -31,7 +31,9 @@ nb_path: "01_data_prepocess.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Import-libraries-and-load-data">Import libraries and load data<a class="anchor-link" href="#Import-libraries-and-load-data"> </a></h2>
+<h2 id="Load-data">Load data<a class="anchor-link" href="#Load-data"> </a></h2><blockquote><p>Load the table and visuallise</p>
+</blockquote>
+
 </div>
 </div>
 </div>
@@ -44,34 +46,12 @@ nb_path: "01_data_prepocess.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Create-a-subset-of-table-with-relevant-columns,-the-columns-selected-are-as-below:">Create a subset of table with relevant columns, the columns selected are as below:<a class="anchor-link" href="#Create-a-subset-of-table-with-relevant-columns,-the-columns-selected-are-as-below:"> </a></h2><ul>
-<li>'date_start', 'location.district_label', 'location.school_label', 'cd_teacher_name','cd_class','cd_subject','cd_girlspresent',              'cd_boyspresent', 'location.school_school_level', 'co_star1', 'co_star1_example', 'co_star2', 'co_star2_example', 'co_wish',              'co_wish_actions', 'feedback_notes', 'co_lpm_follow', 'Pedagogy composite score (max of 24)'</li>
-</ul>
+<h2 id="Create-a-subset-of-table">Create a subset of table<a class="anchor-link" href="#Create-a-subset-of-table"> </a></h2><blockquote><p>Create subset of table with relevant columns, the columns selected are as below:&gt;&gt; - 'date_start', 'location.district_label', 'location.school_label', 'cd_teacher_name','cd_class','cd_subject','cd_girlspresent',              'cd_boyspresent', 'location.school_school_level', 'co_star1', 'co_star1_example', 'co_star2', 'co_star2_example', 'co_wish',              'co_wish_actions', 'feedback_notes', 'co_lpm_follow', 'Pedagogy composite score (max of 24)'</p>
+</blockquote>
 
 </div>
 </div>
 </div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df_sub</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;date_start&#39;</span><span class="p">,</span><span class="s1">&#39;location.district_label&#39;</span><span class="p">,</span><span class="s1">&#39;location.school_label&#39;</span><span class="p">,</span>
-             <span class="s1">&#39;cd_teacher_name&#39;</span><span class="p">,</span><span class="s1">&#39;cd_class&#39;</span><span class="p">,</span><span class="s1">&#39;cd_subject&#39;</span><span class="p">,</span><span class="s1">&#39;cd_girlspresent&#39;</span><span class="p">,</span>
-             <span class="s1">&#39;cd_boyspresent&#39;</span><span class="p">,</span><span class="s1">&#39;location.school_school_level&#39;</span><span class="p">,</span><span class="s1">&#39;co_star1&#39;</span><span class="p">,</span>
-             <span class="s1">&#39;co_star1_example&#39;</span><span class="p">,</span><span class="s1">&#39;co_star2&#39;</span><span class="p">,</span><span class="s1">&#39;co_star2_example&#39;</span><span class="p">,</span><span class="s1">&#39;co_wish&#39;</span><span class="p">,</span> 
-             <span class="s1">&#39;co_wish_actions&#39;</span><span class="p">,</span><span class="s1">&#39;feedback_notes&#39;</span><span class="p">,</span><span class="s1">&#39;co_lpm_follow&#39;</span><span class="p">,</span><span class="s1">&#39;Pedagogy composite score (max of 24)&#39;</span><span class="p">]]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -210,7 +190,9 @@ nb_path: "01_data_prepocess.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Combine-all-star-and-wish-columns">Combine all star and wish columns<a class="anchor-link" href="#Combine-all-star-and-wish-columns"> </a></h2>
+<h2 id="Combine-columns">Combine columns<a class="anchor-link" href="#Combine-columns"> </a></h2><blockquote><p>Combining of columns are required for Star and wish as they are in multiple columns, we will make a new column with all texts concatenated</p>
+</blockquote>
+
 </div>
 </div>
 </div>
@@ -298,7 +280,9 @@ nb_path: "01_data_prepocess.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Clean-the-text:-remove-special-characters,-punctuation,-stop-words-etc">Clean the text: remove special characters, punctuation, stop words etc<a class="anchor-link" href="#Clean-the-text:-remove-special-characters,-punctuation,-stop-words-etc"> </a></h2>
+<h2 id="Clean-the-text">Clean the text<a class="anchor-link" href="#Clean-the-text"> </a></h2><blockquote><p>Remove special characters, punctuation, stop words etc</p>
+</blockquote>
+
 </div>
 </div>
 </div>
@@ -315,25 +299,6 @@ nb_path: "01_data_prepocess.ipynb"
 <span class="n">fn_remove_punc</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;..&#39;</span><span class="p">,</span><span class="s1">&#39;.&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 <span class="c1"># fn_rep = lambda x: rep(x)</span>
 <span class="c1"># .replace(&#39;,&#39;,&#39;.&#39;).replace(&#39;;&#39;,&#39;.&#39;).replace(&#39; he &#39;,&#39;teacher &#39;).replace(&#39; she &#39;,&#39;teacher &#39;)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;co_star&#39;</span><span class="p">,</span><span class="s1">&#39;co_wish&#39;</span><span class="p">,</span><span class="s1">&#39;feedback_notes&#39;</span><span class="p">]:</span>
-    <span class="n">df_sub</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_sub</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">fn_remove_punc</span><span class="p">)</span>
-    <span class="n">df_sub</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_sub</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">rep</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -367,8 +332,28 @@ nb_path: "01_data_prepocess.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">df_sub</span><span class="p">[</span><span class="s1">&#39;co_wish&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> Sentence: </span><span class="si">{}</span><span class="s1">, </span><span class="se">\n</span><span class="s1"> Wish: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">clean_punc</span><span class="p">(</span><span class="n">string</span><span class="p">,</span><span class="n">translator</span><span class="p">):</span>
+    <span class="n">string</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="n">translator</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">string</span>
+
+<span class="c1">## remove stopwords</span>
+<span class="n">nlp</span> <span class="o">=</span> <span class="n">spacy</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;en_core_web_sm&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">remove_stopword</span><span class="p">(</span><span class="n">string</span><span class="p">,</span><span class="n">nlp</span><span class="p">):</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+    
+    <span class="n">token_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">:</span>
+        <span class="n">token_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">token</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+    
+    <span class="n">filtered_sentence</span> <span class="o">=</span><span class="p">[]</span> 
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">token_list</span><span class="p">:</span>
+        <span class="n">lexeme</span> <span class="o">=</span> <span class="n">nlp</span><span class="o">.</span><span class="n">vocab</span><span class="p">[</span><span class="n">word</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">lexeme</span><span class="o">.</span><span class="n">is_stop</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
+            <span class="n">filtered_sentence</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> 
+    
+    <span class="k">return</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">filtered_sentence</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -378,136 +363,13 @@ nb_path: "01_data_prepocess.ipynb"
 </div>
     {% endraw %}
 
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">df_sub</span><span class="p">[</span><span class="s1">&#39;co_star&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> Sentence: </span><span class="si">{}</span><span class="s1">, </span><span class="se">\n</span><span class="s1"> Star: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">))</span>
-<span class="c1"># i for i in df_sub[&#39;co_star&#39;][:10])</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">df_sub</span><span class="p">[</span><span class="s1">&#39;feedback_notes&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="mi">10</span><span class="p">]):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> Sentence: </span><span class="si">{}</span><span class="s1">, </span><span class="se">\n</span><span class="s1"> Feedback: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">))</span>
-<span class="c1"># i for i in df_sub[&#39;co_star&#39;][:10])</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">translator</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">maketrans</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">string</span><span class="o">.</span><span class="n">punctuation</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="clean_punc" class="doc_header"><code>clean_punc</code><a href="https://github.com/sayakgis/sseip_text_mining/tree/master/sseip_text_mining/core.py#L30" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>clean_punc</code>(<strong><code>string</code></strong>, <strong><code>translator</code></strong>)</p>
-</blockquote>
-
-</div>
-
-</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>See the table after cleaning</p>
 
 </div>
 </div>
-
 </div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="remove_stopword" class="doc_header"><code>remove_stopword</code><a href="https://github.com/sayakgis/sseip_text_mining/tree/master/sseip_text_mining/core.py#L40" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>remove_stopword</code>(<strong><code>string</code></strong>, <strong><code>nlp</code></strong>)</p>
-</blockquote>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;co_star&#39;</span><span class="p">,</span><span class="s1">&#39;co_wish&#39;</span><span class="p">,</span><span class="s1">&#39;feedback_notes&#39;</span><span class="p">]:</span>
-    <span class="n">tqdm</span><span class="o">.</span><span class="n">pandas</span><span class="p">()</span>
-    <span class="n">df_sub</span><span class="p">[</span><span class="n">col</span><span class="o">+</span><span class="s1">&#39;_clean&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_sub</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span><span class="o">.</span><span class="n">progress_apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> 
-                                                        <span class="n">remove_stopword</span><span class="p">(</span><span class="n">clean_punc</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">translator</span><span class="p">),</span><span class="n">nlp</span><span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -598,41 +460,12 @@ nb_path: "01_data_prepocess.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Lemmetise-the-star,-wish-and-feedback-column">Lemmetise the star, wish and feedback column<a class="anchor-link" href="#Lemmetise-the-star,-wish-and-feedback-column"> </a></h2>
-</div>
-</div>
-</div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="cal_lemma" class="doc_header"><code>cal_lemma</code><a href="https://github.com/sayakgis/sseip_text_mining/tree/master/sseip_text_mining/core.py#L56" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cal_lemma</code>(<strong><code>string</code></strong>)</p>
+<h2 id="Lemmetise">Lemmetise<a class="anchor-link" href="#Lemmetise"> </a></h2><blockquote><p>Lemmetisation means making the word to it's base form. We will do it for star, wish and feedback column</p>
 </blockquote>
 
 </div>
-
-</div>
-
 </div>
 </div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -640,11 +473,10 @@ nb_path: "01_data_prepocess.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cal_lemma</span><span class="p">(</span><span class="n">df_sub</span><span class="o">.</span><span class="n">co_star_clean</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-
-<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;co_star&#39;</span><span class="p">,</span><span class="s1">&#39;co_wish&#39;</span><span class="p">,</span><span class="s1">&#39;feedback_notes&#39;</span><span class="p">]:</span>
-    <span class="n">col1</span> <span class="o">=</span> <span class="n">col</span><span class="o">+</span><span class="s1">&#39;_clean&#39;</span>
-    <span class="n">df_sub</span><span class="p">[</span><span class="n">col1</span><span class="o">+</span><span class="s1">&#39;_lemma&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_sub</span><span class="p">[</span><span class="n">col1</span><span class="p">]</span><span class="o">.</span><span class="n">progress_apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">cal_lemma</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">cal_lemma</span><span class="p">(</span><span class="n">string</span><span class="p">):</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">lemma_</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">]</span>
+    <span class="k">return</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">y</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -654,6 +486,13 @@ nb_path: "01_data_prepocess.ipynb"
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>See the table after lemmetisation</p>
+
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -744,65 +583,12 @@ nb_path: "01_data_prepocess.ipynb"
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Tag-part-of-Speech-for-Star,-Wish-and-Feedback">Tag part of Speech for Star, Wish and Feedback<a class="anchor-link" href="#Tag-part-of-Speech-for-Star,-Wish-and-Feedback"> </a></h2>
-</div>
-</div>
-</div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="set_key" class="doc_header"><code>set_key</code><a href="https://github.com/sayakgis/sseip_text_mining/tree/master/sseip_text_mining/core.py#L64" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>set_key</code>(<strong><code>dictionary</code></strong>, <strong><code>key</code></strong>, <strong><code>value</code></strong>)</p>
+<h2 id="Tag-part-of-Speech">Tag part of Speech<a class="anchor-link" href="#Tag-part-of-Speech"> </a></h2><blockquote><p>Tag part of speech for columns Star, Wish and Feedback, part of speech would identify the Noun, Verb etc from Sentence</p>
 </blockquote>
 
 </div>
-
-</div>
-
 </div>
 </div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_markdown rendered_html output_subarea ">
-<h4 id="cal_lemma_pos" class="doc_header"><code>cal_lemma_pos</code><a href="https://github.com/sayakgis/sseip_text_mining/tree/master/sseip_text_mining/core.py#L73" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>cal_lemma_pos</code>(<strong><code>x</code></strong>)</p>
-</blockquote>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
-</div>
-    {% endraw %}
-
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -810,11 +596,28 @@ nb_path: "01_data_prepocess.ipynb"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">tqdm</span><span class="o">.</span><span class="n">pandas</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;co_star&#39;</span><span class="p">,</span><span class="s1">&#39;co_wish&#39;</span><span class="p">,</span><span class="s1">&#39;feedback_notes&#39;</span><span class="p">]:</span>
-<span class="c1">#     col1 = col+&#39;_clean&#39;</span>
-    <span class="n">df_sub</span><span class="p">[</span><span class="n">col</span><span class="o">+</span><span class="s1">&#39;_pos_lemma&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_sub</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">progress_apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">cal_lemma_pos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">)</span>
-<span class="n">df_sub</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="s1">&#39;cleaned5.csv&#39;</span><span class="p">))</span>    
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># calculate POS and Lemma</span>
+
+<span class="k">def</span> <span class="nf">set_key</span><span class="p">(</span><span class="n">dictionary</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">dictionary</span><span class="p">:</span>
+        <span class="n">dictionary</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">dictionary</span><span class="p">[</span><span class="n">key</span><span class="p">])</span> <span class="o">==</span> <span class="nb">list</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">dictionary</span><span class="p">[</span><span class="n">key</span><span class="p">]:</span>
+            <span class="n">dictionary</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">dictionary</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">dictionary</span><span class="p">[</span><span class="n">key</span><span class="p">],</span> <span class="n">value</span><span class="p">]</span>
+        
+<span class="k">def</span> <span class="nf">cal_lemma_pos</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">s</span><span class="o">=</span><span class="p">{}</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">doc</span> <span class="o">=</span> <span class="n">nlp</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">y</span><span class="o">=</span><span class="p">[(</span><span class="n">x</span><span class="o">.</span><span class="n">pos_</span><span class="p">,</span><span class="n">x</span><span class="o">.</span><span class="n">lemma_</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">doc</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="n">y</span><span class="p">:</span>
+            <span class="n">set_key</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">pass</span>
+    <span class="k">return</span> <span class="n">s</span>
 </pre></div>
 
     </div>
@@ -824,6 +627,13 @@ nb_path: "01_data_prepocess.ipynb"
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>See the table after part of speech tagging</p>
+
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
