@@ -3,7 +3,24 @@
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
 index = {"say_hello": "00_core.ipynb",
-         "nlp_en": "01_data_prepocess.ipynb"}
+         "nlp_en": "01_data_prepocess.ipynb",
+         "rep": "01_data_prepocess.ipynb",
+         "fn_remove_punc": "01_data_prepocess.ipynb",
+         "clean_punc": "01_data_prepocess.ipynb",
+         "remove_stopword": "01_data_prepocess.ipynb",
+         "nlp": "02_analysis_star.ipynb",
+         "cal_lemma": "01_data_prepocess.ipynb",
+         "set_key": "02_analysis_star.ipynb",
+         "cal_lemma_pos": "01_data_prepocess.ipynb",
+         "return_wc": "02_analysis_star.ipynb",
+         "plot_wc": "02_analysis_star.ipynb",
+         "separate_pos": "02_analysis_star.ipynb",
+         "calculate_ngram": "02_analysis_star.ipynb",
+         "stoplist": "02_analysis_star.ipynb",
+         "visulaizeBigrams": "02_analysis_star.ipynb",
+         "plot_multi_wc": "02_analysis_star.ipynb",
+         "plot_bigram": "02_analysis_star.ipynb",
+         "visulaizeBigrams_multi": "02_analysis_star.ipynb"}
 
 modules = ["core.py"]
 

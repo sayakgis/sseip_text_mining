@@ -16,7 +16,7 @@ entries:
       title: Data_preprocess
       url: data_prepocess.html
     - output: web,pdf
-      title: Title
+      title: Analysis of Star Column
       url: analysis_star.html
     output: web
     title: sseip_text_mining
