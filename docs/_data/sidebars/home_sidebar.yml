@@ -14,7 +14,7 @@ entries:
       url: core.html
     - output: web,pdf
       title: Title
-      url: data_prepocess.html
+      url: analysis_star.html
     output: web
     title: sseip_text_mining
   output: web
